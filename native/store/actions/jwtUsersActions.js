@@ -11,7 +11,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import * as actionTypes from '../constans/constans';
 // const env = require('../../env.js')
-
+import { getDollarsTransactions, getPesosTransactions } from './acountActions';
 // const localhost= env.localhost;
 
 //loguin  -> funciona loguin correcto e incorrecto.
@@ -22,88 +22,91 @@ export const loguinUser = (email, password, onSuccess) => (dispatch) => {
 			password: password,
 		})
 		.then((res) => {
-      
-      const token = res.data;
-      var decoded = jwt_decode(token);
+			const token = res.data;
+			var decoded = jwt_decode(token);
 
-      // console.log('soy el token',token);
-      if (token) {
-        AsyncStorage.setItem("@token", token);
-        dispatch({
-          type: actionTypes.USER_LOGIN,
-        });
-        dispatch(getCurrentUser(token));
-        setTimeout(function () {
-          onSuccess();
-        }, 1500);
-      }
-    })
-    .catch((error) => {
-      setTimeout(function () {
-        Toast.show({
-          type: "error",
-          position: "top",
-          text1: "Login incorrecto",
-          text2: `Email o password incorrecto`,
-          visibilityTime: 6000,
-          autoHide: true,
-          topOffset: 30,
-          bottomOffset: 40,
-        });
-      }, 1500);
-    });
+			// console.log('soy el token',token);
+			if (token) {
+				AsyncStorage.setItem('@token', token);
+				dispatch({
+					type: actionTypes.USER_LOGIN,
+				});
+				dispatch(getCurrentUser(token, true));
+				setTimeout(function () {
+					onSuccess();
+				}, 1500);
+			}
+		})
+		.catch((error) => {
+			setTimeout(function () {
+				Toast.show({
+					type: 'error',
+					position: 'top',
+					text1: 'Login incorrecto',
+					text2: `Email o password incorrecto`,
+					visibilityTime: 6000,
+					autoHide: true,
+					topOffset: 30,
+					bottomOffset: 40,
+				});
+			}, 1500);
+		});
 };
 
 //obtener información del usuario logueado
-export const getCurrentUser = (token) => async (dispatch) => {
-  //Headers con Token
-  var decoded = jwt_decode(token);
-  console.log(typeof decoded.id);
-  axios
-    .get(`${BACK_URL}/api/users/by-id`, {
-      params: {
-        _id: decoded.id,
-      },
-    })
-    .then((res) => {
-      dispatch({
-        type: actionTypes.CURRENT_USER,
-        user: res.data,
-      });
-      setTimeout(function () {
-        Toast.show({
-          type: "success",
-          position: "top",
-          text1: `Bienvenido ${res.data.username} `,
-          visibilityTime: 2000,
-          autoHide: true,
-          topOffset: 30,
-          bottomOffset: 40,
-        });
-      }, 1500);
-
-    })
-    .catch((error) => {
-      setTimeout(function () {
-        Toast.show({
-          type: "error",
-          position: "top",
-          text1: "Error",
-          text2: `${error.message}`,
-          visibilityTime: 6000,
-          autoHide: true,
-          topOffset: 30,
-          bottomOffset: 40,
-        });
-      }, 1500);
-    });
+export const getCurrentUser = (token, login) => async (dispatch) => {
+	//Headers con Token
+	var decoded = jwt_decode(token);
+	// console.log(typeof decoded.id);
+	axios
+		.get(`${BACK_URL}/api/users/by-id`, {
+			params: {
+				_id: decoded.id,
+			},
+		})
+		.then((res) => {
+			dispatch({
+				type: actionTypes.CURRENT_USER,
+				user: res.data,
+			});
+			if (login) {
+				setTimeout(function () {
+					Toast.show({
+						type: 'success',
+						position: 'top',
+						text1: `Bienvenido ${res.data.username} `,
+						visibilityTime: 2000,
+						autoHide: true,
+						topOffset: 30,
+						bottomOffset: 40,
+					});
+				}, 1500);
+			}
+			dispatch(getDollarsTransactions(res.data.accounts[1].cvu));
+			dispatch(getPesosTransactions(res.data.accounts[0].cvu));
+		})
+		.catch((error) => {
+			setTimeout(function () {
+				Toast.show({
+					type: 'error',
+					position: 'top',
+					text1: 'Error',
+					text2: `${error.message}`,
+					visibilityTime: 6000,
+					autoHide: true,
+					topOffset: 30,
+					bottomOffset: 40,
+				});
+			}, 1500);
+		});
 };
 
-export const verifySession = () => (dispatch) => {
-	const { token } = AsyncStorage;
+export const verifySession = () => async (dispatch) => {
+	//const { token } = AsyncStorage;
+	const token = await AsyncStorage.getItem('@token');
 	if (token) {
-		alert('usuario logeado');
-		dispatch(getCurrentUser(token));
+		//alert('usuario logeado');
+		dispatch(getCurrentUser(token, false));
 	} else {
 		dispatch({
 			type: actionTypes.NOT_CURRENT_USER,

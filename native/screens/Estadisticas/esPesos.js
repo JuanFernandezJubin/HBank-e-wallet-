@@ -1,8 +1,13 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { View, StyleSheet, Dimensions, Text, RefreshControl, ScrollView } from 'react-native';
+import { View, StyleSheet, Dimensions, Text, RefreshControl, ScrollView, Picker } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import {getTransactions} from '../store/actions/acountActions'
-import Grafica from '../components/graficas'
+import {getTransactionsPesos, balancePesosIn, balancePesosOut} from '../../store/actions/acountActions'
+import Grafica from '../../components/graficas'
+import Table from '../../components/tablas';
+import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
+import { theme } from "../../core/theme";
+
+const { width, height } = Dimensions.get('window');
 
 //Functions
 function wait(timeout) {
@@ -11,29 +16,19 @@ function wait(timeout) {
     });
   }
 
-export default function Estatistics() {
+export default function EstadPesos() {
     const dispatch = useDispatch();
 	  const session = useSelector((state) => state.session.userDetail);
     const accounts = useSelector((state) => state.acoount.account);
-    const transations = useSelector((state) => state.acoount.transactions);
+    const transations = useSelector((state) => state.acoount.transactionsPesos);
 	  const accountP = accounts[0];
 	  const accountD = accounts[1];
 	  const cvuP = accountP && accountP.cvu;
     const cvuD = accountD && accountD.cvu;
     const [refreshing, setRefreshing] = useState(false);
+    const [selectedValue, setSelectedValue] = useState("General");
 
-    useEffect(() => {
-        dispatch(getTransactions(cvuP)) 
-    }, [])
 
-    const onRefresh = useCallback(() => {
-        setRefreshing(true);
-    
-        wait(2000).then(() => {
-          setRefreshing(false);
-          dispatch(getTransactions(cvuP));
-        });
-      }, [refreshing]);
 
     
 
@@ -42,7 +37,7 @@ export default function Estatistics() {
     var dayCurrentMount = date.getDate()
     var dayOne = dayCurrentMount-7
 
-    console.log(transations)
+
     let arrayFechCurrent = transations.map(element => {
         let dateSet = new Date( element.date )
         let day = dateSet.getDate()
@@ -73,8 +68,7 @@ export default function Estatistics() {
     let arrayFechCurrentTwo = arrayFechCurrent.filter(x => x !== undefined)
     let arrayTrancInSuccess = arrayTrancIn.filter(x => x !== undefined)
     let arrayTrancOutSuccess = arrayTrancOut.filter(x => x !== undefined)
-    console.log('*****Array IN ****')
-    console.log(arrayTrancOutSuccess)
+
 
     
     let daysAv = []
@@ -117,7 +111,7 @@ export default function Estatistics() {
                               /*Calcular trancciones por dia*/
   /******************************************************************************************* */
 
-  console.log(sixDayOut)
+
   // /*************Valor por dia General****************** */
   let vDayOne = oneDay.length < 1 ? 0 : oneDay.map((x) => x.amount).reduce((ac, x) =>  ac + x)
   let vDayTwo = twoDay.length < 1 ? 0 : twoDay.map((x) => x.amount).reduce((ac, x) =>  ac + x)
@@ -126,7 +120,8 @@ export default function Estatistics() {
   let vDayFive = fiveDay.length < 1 ? 0 : fiveDay.map((x) => x.amount).reduce((ac, x) =>  ac + x)
   let vDaySix = sixDay.length < 1 ? 0 : sixDay.map((x) => x.amount).reduce((ac, x) =>  ac + x)
   let vDaySeven = sevenDay.length < 1 ? 0 : sevenDay.map((x) => x.amount).reduce((ac, x) =>  ac + x)
-    // /*************Valor por dia General****************** */
+  
+    // /*************Valor por dia Ingresos****************** */
     let vDayOneIn = oneDayIn.length < 1 ? 0 : oneDayIn.map((x) => x.amount).reduce((ac, x) =>  ac + x)
     let vDayTwoIn = twoDayIn.length < 1 ? 0 : twoDayIn.map((x) => x.amount).reduce((ac, x) =>  ac + x)
     let vDayThreeIn = threeDayIn.length < 1 ? 0 : threeDayIn.map((x) => x.amount).reduce((ac, x) =>  ac + x)
@@ -134,7 +129,7 @@ export default function Estatistics() {
     let vDayFiveIn = fiveDayIn.length < 1 ? 0 : fiveDayIn.map((x) => x.amount).reduce((ac, x) =>  ac + x)
     let vDaySixIn = sixDayIn.length < 1 ? 0 : sixDayIn.map((x) => x.amount).reduce((ac, x) =>  ac + x)
     let vDaySevenIn = sevenDayIn.length < 1 ? 0 : sevenDayIn.map((x) => x.amount).reduce((ac, x) =>  ac + x)
-    // /*************Valor por dia General****************** */
+    // /*************Valor por dia Egresos****************** */
     let vDayOneOut = oneDayOut.length < 1 ? 0 : oneDayOut.map((x) => x.amount).reduce((ac, x) =>  ac + x)
     let vDayTwoOut = twoDayOut.length < 1 ? 0 : twoDayOut.map((x) => x.amount).reduce((ac, x) =>  ac + x)
     let vDayThreeOut = threeDayOut.length < 1 ? 0 : threeDayOut.map((x) => x.amount).reduce((ac, x) =>  ac + x)
@@ -143,13 +138,81 @@ export default function Estatistics() {
     let vDaySixOut = sixDayOut.length < 1 ? 0 : sixDayOut.map((x) => x.amount).reduce((ac, x) =>  ac + x)
     let vDaySevenOut = sevenDayOut.length < 1 ? 0 : sevenDayOut.map((x) => x.amount).reduce((ac, x) =>  ac + x)
 
-  console.log(vDaySixOut)
+
 
   /***************************************Array para  eje y************************************************ */
   let arrayGen = [vDayOne/1000, vDayTwo/1000, vDayThree/1000, vDayFour/1000, vDayFive/1000, vDaySix/1000, vDaySeven/1000]
   let arrayIn = [vDayOneIn/1000, vDayTwoIn/1000, vDayThreeIn/1000, vDayFourIn/1000, vDayFiveIn/1000, vDaySixIn/1000, vDaySevenIn/1000]
   let arrayOut = [vDayOneOut/1000, vDayTwoOut/1000, vDayThreeOut/1000, vDayFourOut/1000, vDayFiveOut/1000, vDaySixOut/1000, vDaySevenOut/1000]
 
+    var valInSemana = arrayIn.reduce((ac, x) =>  ac + x)
+    var valOutSemana = arrayIn.reduce((ac, x) =>  ac + x)
+
+
+  useEffect(() => {
+    dispatch(getTransactionsPesos(cvuP)) 
+    dispatch(balancePesosIn(valInSemana))
+    dispatch(balancePesosOut(valOutSemana))
+    onRefresh()
+    return
+}, [])
+
+const onRefresh = useCallback(() => {
+    setRefreshing(true);
+
+    wait(1000).then(() => {
+      setRefreshing(false);
+      dispatch(getTransactionsPesos(cvuP));
+      dispatch(balancePesosIn(arrayIn))
+      dispatch(balancePesosOut(arrayOut))
+    });
+  }, [refreshing]);
+
+  const General = () => {
+    return (
+        <View style={styles.container}>
+        <Grafica 
+        data = {arrayGen}
+        /> 
+        <Table   
+            arrayValues={arrayGen}
+            arrayDay= {daysAv}   
+        />
+      </View>
+    )
+  }
+
+  const Ingresos = () => {
+    return (
+
+      <View style={styles.container}>
+      <Grafica 
+        text='Grafica general de Ingresos en los ultimos 7 dias'
+        data = {arrayIn}
+      /> 
+          <Table   
+              arrayValues={arrayIn}
+              arrayDay= {daysAv}   
+          />
+      </View>
+    )
+  }
+
+  const Egresos = () => {
+    return (
+        <View style={styles.container}>
+          <Grafica 
+          text='Grafica general de Egresos en los ultimos 7 dias!!'
+          data = {arrayOut}
+          /> 
+          <Table   
+                  arrayValues={arrayOut}
+                  arrayDay= {daysAv}   
+          />
+        </View>
+    )
+  }
+   
 
     return (
         <ScrollView
@@ -158,20 +221,54 @@ export default function Estatistics() {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       >
-        <Grafica 
-          text='Grafica general de transacciones en los ultimos 7 dias'
-          data = {arrayGen}
-        /> 
-
-        <Grafica 
-          text='Grafica general de Ingresos en los ultimos 7 dias'
-          data = {arrayIn}
-        /> 
-
-        <Grafica 
-          text='Grafica general de Egresos en los ultimos 7 dias'
-          data = {arrayOut}
-        /> 
+        <View style={styles.selectCont}>
+        <Text style={styles.titleStyle}>Revisa como fueron tus transacciones en la ultima semana</Text>
+        
+         <Picker
+                selectedValue={selectedValue}
+                style={{ height: 50, width: 300 }}
+                style={styles.inputSelect}
+                onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+                  >
+                  <Picker.Item label="Balance general" value={"General"} />
+                  <Picker.Item label="Ingresos" value={"Ingresos"} />
+                  <Picker.Item label="Egresos" value={"Egresos"} />
+				</Picker>
+        </View>
+        {selectedValue === 'General' && <General/>}
+        {selectedValue === 'Ingresos' && <Ingresos/>}
+        {selectedValue === 'Egresos' && <Egresos/>}
         </ScrollView>
     )
 }
+
+
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent:"center",
+      alignContent:'center',
+      backgroundColor: "#fff",
+      height:vh(85),
+      margin:10,
+      padding:10
+    },
+    inputSelect: {
+      borderBottomColor: 'black',
+      borderBottomWidth: 6,
+      width: width*1,
+      height:50,
+    },
+    titleStyle: {
+      textAlign: 'center',
+      fontSize: 20,
+      fontWeight: 'bold',
+      color: theme.colors.primary,
+      paddingLeft: 5,
+    },
+    selectCont:{
+    justifyContent:"center",
+
+    }
+
+  });
