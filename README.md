@@ -6,20 +6,20 @@
 
 <div>
     <h1>HOME</h1> 
-    <img src="./readmeAsset/Home.png"></img>
+    <img src="./readmeAssets/Home.png"></img>
     <h1>REGISTRO Y LOGIN</h1> 
     <h2>PASO 1 - REGISTRO INICIAL</h2> 
     <p>Solo debes poner tus datos basicos para el registro.</p>
-    <img src="./readmeAsset/Registro1.png"></img>
+    <img src="./readmeAssets/Registro1.png"></img>
     <h2>PASO 2 - VALIDA EL CODIGO</h2> 
     <p>Una vez termines el paso uno, te enviaremos un correo electronico con el codigo correspondiente.</p>
-    <img src="./readmeAsset/Registro2.png"></img>
+    <img src="./readmeAssets/Registro2.png"></img>
     <h2>PASO 3 - DAR ALTA A TU CUENTA</h2> 
     <p>Una vez valides tu codigo, tendras que completar un ultimo paso. Llena el formulario con los datos complementarios.</p>
-    <img src="./readmeAsset/Registro3.png"></img>
+    <img src="./readmeAssets/Registro3.png"></img>
     <h2>PASO 4 - LOGIN</h2> 
     <p>Finalmente ya puedes logearte con tu email y contraseña registrados, ahora puedes disfrutar de Hbank.</p>
-    <img src="./readmeAsset/Login.png"></img>
+    <img src="./readmeAssets/Login.png"></img>
 <div>
 
 <div>
@@ -27,44 +27,44 @@
     <p>
         Una vez inicies session, podras empezar a navegar y explorar todas las funcionalidades que tenemos para ti
     </p>
-    <img src="./readmeAsset/Poscon.png"></img>
+    <img src="./readmeAssetss/Poscon.png"></img>
     <h2>MENU LATERAL</h2>
-    <img src="./readmeAsset/Menu.png"></img>
+    <img src="./readmeAssets/Menu.png"></img>
     <h1>RECARGAR DINERO</h1> 
     <p>
         Recarga dinero a cualquiera de tus dos cuentas por medio de tarjeta credito o deboto, o atravez de un codigo QR que presentaras en cualquier punto de Todo Pago.
     </p>
     <h2>TARJETA</h2>
-    <img src="./readmeAsset/Card.png"></img>
+    <img src="./readmeAssets/Card.png"></img>
     <h2>CODIGO QR</h2>
-    <img src="./readmeAsset/QR.png"></img>
+    <img src="./readmeAssets/QR.png"></img>
     <h1>MANDAR DINERO</h1> 
     <p>
         Mandar dinero a tus contactos. Puedes hacerlo desde cualquiera de tus cuentas siempre y cuando tengas saldo disponible.
     </p>
-    <img src="./readmeAsset/Mandar.png"></img>
+    <img src="./readmeAssets/Mandar.png"></img>
     <h1>MOVIMIENTOS Y ESTADISTICAS</h1>
     <p>
         Puedes ver tus ultimos movimientos en los ultimos 15 y 7 dias, asi como los que realizaste el mismo dia. de igual manera tendras informacion un poco mas especifica, ya que contaras con una opcion de estadisticas, en las cuales te muestraremos como fue el comportamiento de tu dienro, en el trascurso de los ultimos 7 dias encuanto a ingreso y egresos.
     </p>
     <h2>ULTIMOS MOVIMIENTOS</h2>
-    <img src="./readmeAsset/UlMov.png"></img>
+    <img src="./readmeAssets/UlMov.png"></img>
     <h2>ESTADISTICAS</h2>
-    <img src="./readmeAsset/Est.png"></img>
+    <img src="./readmeAssets/Est.png"></img>
 </div>
 <div>
 <h1>CONTACTOS</h1>
     <p>
         Podras ver todos los contactos que tienes registrados en tu cuenta.
     </p>
-    <img src="./readmeAsset/Conta.png"></img>
+    <img src="./readmeAssets/Conta.png"></img>
 
 </div>
 <h1>PREGUNTAS Y RESPUESTAS</h1>
     <p>
         Si quieres conocer o tienes dudas acerca de como funciona la aplicacion, tendras un opcion para responder lo que necesites.
     </p>
-    <img src="./readmeAsset/FAQ.png"></img>
+    <img src="./readmeAssets/FAQ.png"></img>
 
 </div>
 
