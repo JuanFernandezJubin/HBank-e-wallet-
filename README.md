@@ -1,137 +1,207 @@
-<h1>HBANK</h1> 
-<p>
-    Hbank es una billetera electronica, que te ayudara a gestionar tu dinero, podras enviar dinero, recibir y hasta ver tu movimientos y estadisticas de los ultimos dias. Todo esto en base a una cuenta que creas cuando te registras en nuestra app. Se te asignara un CVU en pesos y otro en dolares. A partir de ahi, podras disfrutar de todas las funcionalidades que te mencionamos ya. A continuacion te mostramos un resumen visual de nuestra aplicacion.
+<h1>henrybank</h1>
 
+<p align="center">
+<img src="./readmeAssets/logo.png"></img>
 </p>
 
-<div>
-    <h1>HOME</h1> 
-    <img src="./readmeAssets/Home.png"></img>
-    <h1>REGISTRO Y LOGIN</h1> 
-    <h2>PASO 1 - REGISTRO INICIAL</h2> 
-    <p>Solo debes poner tus datos basicos para el registro.</p>
-    <img src="./readmeAssets/Registro1.png"></img>
-    <h2>PASO 2 - VALIDA EL CODIGO</h2> 
-    <p>Una vez termines el paso uno, te enviaremos un correo electronico con el codigo correspondiente.</p>
-    <img src="./readmeAssets/Registro2.png"></img>
-    <h2>PASO 3 - DAR ALTA A TU CUENTA</h2> 
-    <p>Una vez valides tu codigo, tendras que completar un ultimo paso. Llena el formulario con los datos complementarios.</p>
-    <img src="./readmeAssets/Registro3.png"></img>
-    <h2>PASO 4 - LOGIN</h2> 
-    <p>Finalmente ya puedes logearte con tu email y contraseña registrados, ahora puedes disfrutar de Hbank.</p>
-    <img src="./readmeAssets/Login.png"></img>
-<div>
+## Acerca del proyecto
 
-<div>
-    <h1>POSCONSOLIDADA</h1>
-    <p>
-        Una vez inicies session, podras empezar a navegar y explorar todas las funcionalidades que tenemos para ti
-    </p>
-    <img src="./readmeAssetss/Poscon.png"></img>
-    <h2>MENU LATERAL</h2>
-    <img src="./readmeAssets/Menu.png"></img>
-    <h1>RECARGAR DINERO</h1> 
-    <p>
-        Recarga dinero a cualquiera de tus dos cuentas por medio de tarjeta credito o deboto, o atravez de un codigo QR que presentaras en cualquier punto de Todo Pago.
-    </p>
-    <h2>TARJETA</h2>
-    <img src="./readmeAssets/Card.png"></img>
-    <h2>CODIGO QR</h2>
-    <img src="./readmeAssets/QR.png"></img>
-    <h1>MANDAR DINERO</h1> 
-    <p>
-        Mandar dinero a tus contactos. Puedes hacerlo desde cualquiera de tus cuentas siempre y cuando tengas saldo disponible.
-    </p>
-    <img src="./readmeAssets/Mandar.png"></img>
-    <h1>MOVIMIENTOS Y ESTADISTICAS</h1>
-    <p>
-        Puedes ver tus ultimos movimientos en los ultimos 15 y 7 dias, asi como los que realizaste el mismo dia. de igual manera tendras informacion un poco mas especifica, ya que contaras con una opcion de estadisticas, en las cuales te muestraremos como fue el comportamiento de tu dienro, en el trascurso de los ultimos 7 dias encuanto a ingreso y egresos.
-    </p>
-    <h2>ULTIMOS MOVIMIENTOS</h2>
-    <img src="./readmeAssets/UlMov.png"></img>
-    <h2>ESTADISTICAS</h2>
-    <img src="./readmeAssets/Est.png"></img>
-</div>
-<div>
-<h1>CONTACTOS</h1>
-    <p>
-        Podras ver todos los contactos que tienes registrados en tu cuenta.
-    </p>
-    <img src="./readmeAssets/Conta.png"></img>
+henrybank es una billetera electrónica, que te ayudara a gestionar tu dinero, podrás enviar dinero, recibir y hasta ver tus movimientos y estadísticas de los últimos días. Todo esto en base a una cuenta que creas cuando te registras en nuestra app: se te asignará un CVU en pesos y otro en dólares. A partir de ahí, podrás disfrutar de todas las funcionalidades que te mencionamos antes.
 
-</div>
-<h1>PREGUNTAS Y RESPUESTAS</h1>
-    <p>
-        Si quieres conocer o tienes dudas acerca de como funciona la aplicacion, tendras un opcion para responder lo que necesites.
-    </p>
-    <img src="./readmeAssets/FAQ.png"></img>
+## Tecnologías usadas
 
-</div>
+#### Front-End
 
+- React-Native
+- React-Navigation
+- Redux
+- Axios
 
-<div>
-    <h1> COMO CORRER EL PROYECTO ? </h1>
-        <ol>
-        <li>Crea una base de datos en MongDB. En este ejemplo le pondremos "henrybank". Se crea con el siguiente comando: use henrybank</li>
-        <li>Crea un archivo dentro de la carpeta "api" llamado .env con el siguiente contenido:
-            <pre>
-                    <code>
-                    DATABASE = 'mongodb://localhost/henrybank'
-                    ADMIN_EMAIL = hbank.group5@gmail.com
-                    PASSW_EMAIL = HenryBankHenryBank
-                    BACK_URL = http://localhost:3000/
-                    JWT_SECRET = lamejorappdehenryfinal
-                    </code>
-            </pre>
-        </li>
-        <li>Crea un archivo dentro de la carpeta "native" llamado en.jsv con el siguiente contenido:
-            <pre>
-                    <code>
-                        module.exports = { BACK_URL: `http://ipv4DeTuPC:3000`}
-                    </code>
-            </pre>
-        </li>
-        <li>Posicionate en la carpeta api y ejecuta el comando npm install</li>
-        <li>Posicionate en la carpeta native y ejecuta el comando install</li>
-        <li>Correr los servers</li>
-        <li>Abrí dos consolas</li>
-        <li>En una consola posicionate en la carpeta api y ejecuta el comando npm run dev</li>
-        <li>En la otra consola, posicionate en la carpeta client y ejecuta el comando expo start</li>
-        <li>Abre tu app de expo de tu celular y escanea el codigo QR </li>
-        </ol>
-</div>
-<div>
-    <h1> TECNOLOGIAS USADAS </h1>
-        <h2>FRONTEND</h2>
-        <ul>
-            <li>React Native</li>
-            <li>Redux</li>
-            <li>Axios</li>
-        </ul>
-        <h2>BACKEND</h2>
-        <ul>
-            <li>Nodejs</li>
-            <li>MoleculerJS</li>
-            <li>Mongosee (MongoDB)</li>
-            <li>Nodemailer</li>
-            <li>JWT</li>
-            <li>CHART JS</li>
-        </ul>
+#### Back-End
 
-</div>
-<div>
-    <h1> EQUIPO </h1>
-    <p>El equipo de desarrollo lo conforman los siguientes desarrolladores:</p>
-        <ul>
-            <li><a href="https://github.com/CamilolIn" rel="nofollow">Camilo Lindarte </a></li>
-            <li><a href="https://github.com/quasirsg" rel="nofollow">Alexis Romano </a></li>
-            <li><a href="https://github.com/nvlozano" rel="nofollow">Carlos Saballe</a></li>
-            <li><a href="https://github.com/martinc1991" rel="nofollow">Martin Catala</a></li>
-            <li><a href="https://github.com/JuanFernandezJubin" rel="nofollow">Juan Ignacio Fernandez</a></li>
-            <li><a href="https://github.com/olivertborges" rel="nofollow">Olivert Borges </a></li>
-            <li><a href="https://github.com/gabbies86" rel="nofollow">Gabriela MARCIANO </a></li>
-            <li><a href="https://github.com/Ceci-Caccamo" rel="nofollow">Ceci Caccamo </a></li>
-            <li><a href="https://github.com/sebasf24" rel="nofollow">Sebastian F.</a></li>
-        </ul>
+- NodeJS
+- MoleculerJS
+- Mongoose (MongoDB)
+- Nodemailer
+- JWT
+- ChartJS
 
-</div>
+## Cómo correr el proyecto?
+
+#### Instalar las dependencias del proyecto
+
+1. Posicionate en la carpeta _api_ y ejecuta el comando `npm install`.
+
+```js
+// Desde la raiz del proyecto
+cd api
+npm install
+```
+
+2. Posicionate en la carpeta _native_ y ejecuta el comando `npm install`.
+
+```js
+// Desde la raiz del proyecto
+cd native
+npm install
+```
+
+#### Setear el proyecto
+
+3. Crea una base de datos en MongoDB. En este ejemplo le pondremos 'henrybank'. Se crea con el siguiente comando:
+
+```shell
+ use henrybank
+```
+
+4. Crea un archivo dentro de la carpeta _api_ llamado '.env' con el siguiente contenido:
+
+```js
+// En api/.env
+DATABASE='mongodb://localhost/henrybank'
+ADMIN_EMAIL=henrybank.group5@gmail.com
+PASSW_EMAIL=HenryBankHenryBank
+BACK_URL=http://localhost:3000/
+JWT_SECRET=lamejorappdehenryfinal
+```
+
+5. Crea un archivo dentro de la carpeta _native_ llamado 'env.js' con el siguiente contenido:
+
+```js
+// En native/env.js
+module.exports = { BACK_URL: `http://IPv4DeTuPC:3000` }; // Reemplazar 'IPv4DeTuPC' por tu IP
+```
+
+> Cómo obtengo mi IP? La respuesta en [este video.](https://www.youtube.com/watch?v=QyDOsj-hQDU)
+
+#### Correr el front-end y el back-end
+
+6. Abrí una consola. En ella, posicionate en la carpeta _api_ y ejecuta el comando `npm run dev`:
+
+```js
+// Desde la raiz del proyecto
+cd api
+npm run dev
+```
+
+7. Abrí otra consola (no cierres la otra). En ella, posicionate en la carpeta _native_ y ejecuta el comando `npm start`:
+
+```js
+// Desde la raiz del proyecto
+cd native
+npm start
+```
+
+8. Abrí la aplicación de Expo en tu celular (en iOS solo debes escanear el código con la cámara del teléfono) y escanea el código QR. Ahora deberías ver el proyecto corriendo en tu teléfono!
+
+## Pantallas
+
+### Inicio
+
+<p align="center">
+    <img src="./readmeAssets/Home.png" width=250></img>
+</p>
+
+### Registro y Login - Paso 1: Registro Inicial
+
+Solo debes poner tus datos básicos para el registro.
+
+<p align="center">
+ <img src="./readmeAssets/Registro1.png" width=250></img>
+</p>
+
+### Registro y Login - Paso 2: Valida el Código
+
+Una vez termines el paso uno, te enviaremos un correo electrónico con el código correspondiente.
+
+<p align="center">
+ <img src="./readmeAssets/Registro2.png" width=250></img>
+</p>
+
+### Registro y Login - Paso 3: Dar de alta tu cuenta
+
+Una vez valides tu código, tendrás que completar un último paso. Llena el formulario con los datos complementarios.
+
+<p align="center">
+ <img src="./readmeAssets/Registro3.png" width=250></img>
+</p>
+
+### Registro y Login - Paso 4: Login
+
+Finalmente, ya puedes loguearte con tu email y contraseña registrados, ahora puedes disfrutar de henrybank.
+
+<p align="center">
+ <img src="./readmeAssets/Login.png" width=250></img>
+</p>
+
+### Posición Consolidada
+
+Una vez inicies session, podras empezar a navegar y explorar todas las funcionalidades que tenemos para ti.
+
+<p align="center">
+ <img src="./readmeAssets/Poscon.png" width=250></img>
+</p>
+
+### Menú lateral
+
+Provee la navegación de todo el sitio en un solo lugar para facilitar el uso del la app.
+
+<p align="center">
+ <img src="./readmeAssets/Menu.png" width=250></img>
+</p>
+
+### Recargar dinero
+
+Recarga dinero a cualquiera de tus dos cuentas por medio de tarjeta crédito o débito, o a través de un código QR que presentaras en cualquier punto de Todo Pago.
+
+<p align="center">
+ <img src="./readmeAssets/Card.png" width=250></img>
+ <img src="./readmeAssets/QR.png" width=250></img>
+</p>
+
+### Mandar dinero
+
+Mandar dinero a tus contactos. Puedes hacerlo desde cualquiera de tus cuentas siempre y cuando tengas saldo disponible.
+
+<p align="center">
+ <img src="./readmeAssets/Mandar.png" width=250></img>
+</p>
+
+### Movimientos y estadísticas
+
+Puedes ver tus últimos movimientos en los últimos 15 y 7 días, así como los que realizaste el mismo día. de igual manera tendrás información un poco más específica, ya que contaras con una opción de estadísticas, en las cuales te mostraremos como fue el comportamiento de tu dinero, en el trascurso de los últimos 7 días en cuanto a ingreso y egresos.
+
+<p align="center">
+ <img src="./readmeAssets/UlMov.png" width=250></img>
+ <img src="./readmeAssets/Est.png" width=250></img>
+</p>
+
+### Contactos
+
+Podras ver todos los contactos que tienes registrados en tu cuenta.
+
+<p align="center">
+ <img src="./readmeAssets/Conta.png" width=250></img>
+</p>
+
+### Preguntas y respuestas
+
+Si quieres conocer o tienes dudas acerca de cómo funciona la aplicación, tendrás un opción para responder lo que necesites.
+
+<p align="center">
+ <img src="./readmeAssets/FAQ.png" width=250></img>
+</p>
+
+### Equipo
+
+El equipo de desarrollo lo conforman los siguientes desarrolladores:
+
+- <a href="https://github.com/CamilolIn" rel="nofollow">Camilo Lindarte </a>
+- <a href="https://github.com/quasirsg" rel="nofollow">Alexis Romano </a>
+- <a href="https://github.com/nvlozano" rel="nofollow">Carlos Saballe</a>
+- <a href="https://github.com/martinc1991" rel="nofollow">Martín Catalá</a>
+- <a href="https://github.com/JuanFernandezJubin" rel="nofollow">Juan Ignacio Fernandez</a>
+- <a href="https://github.com/olivertborges" rel="nofollow">Olivert Borges </a>
+- <a href="https://github.com/gabbies86" rel="nofollow">Gabriela Marciano </a>
+- <a href="https://github.com/Ceci-Caccamo" rel="nofollow">Ceci Caccamo </a>
+- <a href="https://github.com/sebasf24" rel="nofollow">Sebastian Fernandez.</a></li> </ul>
